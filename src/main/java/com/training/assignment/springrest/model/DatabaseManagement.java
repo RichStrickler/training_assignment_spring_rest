@@ -1,6 +1,5 @@
 package com.training.assignment.springrest.model;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 public class DatabaseManagement {
 
-  Connection connection = null;
   JdbcTemplate dbManager = null;
 
   String jdbcUrl = "jdbc:mysql://localhost:3306/JDBCDemo";
@@ -26,23 +24,18 @@ public class DatabaseManagement {
     this.jdbcUsername = jdbcUsername;
     this.jdbcPassword = jdbcPassword;
 
+    dbManager.setDataSource(dataSource());
+
   }
 
   @Bean
   public DataSource dataSource() {
     DriverManagerDataSource source = new DriverManagerDataSource();
-    source.setDriverClassName("com.mysql.jdbc.Driver");
+    source.setDriverClassName("com.mysql.jdbc.driver");
     source.setUrl(jdbcUrl);
     source.setUsername(jdbcUsername);
     source.setPassword(jdbcPassword);
     return source;
-  }
-
-  public void initializeDatabase() {
-
-    dbManager.setDataSource(dataSource());
-
-
   }
 
   public void setEmployee(Employee employee) {

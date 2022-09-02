@@ -1,5 +1,6 @@
 package com.training.assignment.springrest.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +14,8 @@ import com.training.assignment.springrest.model.Employee;
 @RestController
 public class OutputPages {
 
-  DatabaseManagement db =
-      new DatabaseManagement("jdbc:mysql://localhost:3306/JDBCDemo", "root", "S2xj8!efD4m37");
+  @Autowired
+  DatabaseManagement db;
 
   @PostMapping("/employee")
   @ResponseBody

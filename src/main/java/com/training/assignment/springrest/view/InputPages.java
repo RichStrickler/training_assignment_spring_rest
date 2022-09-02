@@ -1,5 +1,6 @@
 package com.training.assignment.springrest.view;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,8 +11,8 @@ import com.training.assignment.springrest.model.Employee;
 
 @RestController
 public class InputPages {
-  DatabaseManagement db =
-      new DatabaseManagement("jdbc:mysql://localhost:3306/JDBCDemo", "root", "S2xj8!efD4m37");
+  @Autowired
+  DatabaseManagement db;
 
   @GetMapping("/employee")
   @ResponseBody
